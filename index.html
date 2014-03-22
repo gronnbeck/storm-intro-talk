@@ -62,6 +62,8 @@
 						<li>Hva er storm</li>
 						<li>Skape interesse</li>
 					</ul>
+					<p>when I test the alpha release</p>
+					<img src="resources/alpha.gif">
 				</section>
 
 				<section>
@@ -125,7 +127,87 @@
 				</section>
 
 				<section>
+					<h2>Topology</h2>
+					<img src="resources/topology.png">
+					<aside class="notes">
+						* t is the topological[3] structure of a network,
+						and may be depicted physically or logically.
+					</aside>
+				</section>
+
+				<section>
+					<h3>Meldinger</h3>
+					<p>
+						Kommunisere mellom noder ved hjelp av meldinger
+					</p>
+					<p>("pew", "pew")</p>
+				</section>
+
+				<section>
+					<h3>Tuppel</h3>
+					<p>Felter og Verdier<p>
+					<p>Immutable</P>
+				</section>
+
+				<section>
+					<h3>Spouts</h3>
+					<img src="resources/spout.jpg">
+				</section>
+
+				<section>
+					<h3>Bolts</h3>
+					<img src="resources/bolt1.jpg">
+				</section>
+
+				<section>
 					<h1>Eksempler med Trident</h1>
+				</section>
+
+				<section>
+					<h3> En Spout </h3>
+<pre><code>
+ FixedBatchSpout spout =
+   new FixedBatchSpout(
+    new Fields("sentence"), 3,
+    new Values("the cow jumped over the moon"),
+    new Values("the man went to the store and bought some candy"),
+    new Values("four score and seven years ago"),
+    new Values("how many apples can you eat"));
+
+ spout.setCycle(true);
+
+</code></pre>
+				</section>
+
+				<section>
+					<h3> En veldig enkel Bolt </h3>
+<pre><code>
+public class Split extends BaseFunction {
+  public void execute(TridentTuple tuple, TridentCollector collector) {
+    String sentence = tuple.getString(0);
+      for(String word: sentence.split(" ")) {
+        collector.emit(new Values(word));
+      }
+  }
+}
+
+</code></pre>
+				</section>
+
+				<section>
+					<h3> En topologi </h3>
+<pre><code class="java">
+ TridentTopology topology = new TridentTopology();
+ TridentState wordCounts =
+ topology.newStream( "spout1" , spout )
+  .each( new Fields( "sentence" ), new Split(), new Fields( "word" ) )
+  .groupBy( new Fields( "word" ) )
+  .persistentAggregate( new MemoryMapState.Factory(),
+                        new Count(),
+                        new Fields( "count" ))
+  .parallelismHint(6);
+
+</code></pre>
 				</section>
 
 			</div>
