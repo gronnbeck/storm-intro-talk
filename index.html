@@ -138,11 +138,61 @@
 				<section>
 					<h3>Spouts</h3>
 					<img src="resources/spout.jpg">
+
+					<aside class="notes">
+						I Storm kan "sourcene" for eventene sees på
+						som en kran. Og de har dermed fått navnet "Spout"
+						som rett og slett betyr kran. Og som dere ser her
+						har jeg lagt ved et elegant bilde av en kran.
+
+						Spoutene er utvikles av utviklerne, og Storm gir
+						oss kun et enkelt interface som må implementeres.
+
+						Spouts, kan og vil ofte, fungere som koblingen
+						mellom "den ekte verden" og "storm sin verden".
+						Der den siste nevnte har en flukserende og ikke
+						nødvendigvis en fullstendig state. Og derfor kan
+						utnytte dette til å gjøre ting raskt.
+
+						Eksempler på hva man kan bruke en Spout til:
+							- Hente og videresende data fra en kø
+							- Produsere randomsert data. F.eks. til
+							generering av RSA-nøkler
+					</aside>
 				</section>
 
 				<section>
 					<h3>Bolts</h3>
 					<img src="resources/bolt1.jpg">
+
+					<aside class="notes">
+						Bolts. Usain Bolt. Disse kompoenentene har fått
+						navnet sitt fordi de skal være uavhengige og raske,
+						som et lyn.
+
+						Derfor følte jeg at det passet med et bilde av
+						Usain. Jeg vet ikke hvor uavhengig han er, men jeg
+						vet at han er jærlig rask.
+
+						Nok om det Usain. Det er i boltene Storm vil at
+						vi skal implementere logikk og potensielt state.
+						Ved å implentere bolter slik at de er uavhengig av
+						hverandre, tidligere meldinger (til den graden det
+						er mulig) og feil tolerante. Kan man få et event
+						strøm prosesseringsmiljø som kan skaleres veldig bra.
+
+						Hvor mye det vil skalere er basert på hvor godt
+						boltene er programmert. Men Storm tvinger utviklere til
+						å tenke funksjonelt og stateless. Slik at man faktisk
+						vil klare å utvikle en skalerbar Storm topologi.
+
+						Eksempler på hva man kan bruke en Bolt til er å:
+							- Gjøre enkel logikk som filtrering
+							- Manipulere data
+							- Gjøre persistering
+							- etc
+					</aside>
+
 				</section>
 
 				<section>
