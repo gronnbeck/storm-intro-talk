@@ -205,10 +205,37 @@
 					<h3>Tuppel</h3>
 					<p>Felter og Verdier<p>
 					<p>Immutable</P>
+
+					<aside class="notes">
+						Spouter og Usain Bolter må snakke sammen. Disse to
+						snakker sammen kun via meldinger. Der Spouter kan
+						sende meldinger til Bolter. Og bolter igjen til
+						andre bolter.
+
+						Meldinger er strukturert som Immutable Tupler.
+						Der hver verdi ligger i et forhåndsdefinert felt.
+					</aside>
 				</section>
 
 				<section>
 					<h1>Eksempler med Trident</h1>
+					<aside class="notes">
+						Nå tenkte jeg at vi skulle gå igjennom et eksempel
+						på hvordan man kan bruke Storm. Jeg har elegant
+						sakset koden fra Nathan Marz sin introduksjon
+						til Storm.
+
+						Så eksempelet er gankse triviellt, men tar oss
+						igjennom de viktigste konseptene for å komme i gang
+						med Storm. Bare husk at det vi presenterer her
+						er kun overflaten av hva man kan få til i
+						rammeverket / platformen.
+
+						Tilbake til eksempelet. Helt konkret skal vi lage
+						en topologi som tar inn en menge med setninger,
+						og teller "word-occurance" for alle inkommende
+						setninger.
+					</aside>
 				</section>
 
 				<section>
@@ -225,6 +252,16 @@
  spout.setCycle(true);
 
 </code></pre>
+
+				<aside class="notes">
+					Denne Spouten er ganske triviell og lite brukelig
+					til noe annet enn eksempel kode.
+
+					Kort fortalt tar denne disse fire sentingene om kuer
+					epler og godterier og sender dem til topologien.
+
+					Hvor de blir sendt kommer vi tilbake til senere
+				</aside>
 				</section>
 
 				<section>
@@ -241,7 +278,14 @@ public class Split extends BaseFunction {
 
 </code></pre>
 				</section>
+				<aside class="notes">
+					Her kommer et eksempel på en bolt.
+					Dette er en helt enkel Java-snippet.
 
+					Og som dere ser tar denne inn en setning,
+					splitter opp setningen til ord og sender
+					dem videre ut til den store verdenen.
+				</aside>
 				<section>
 					<h3> En topologi </h3>
 <pre><code class="java">
@@ -256,6 +300,18 @@ public class Split extends BaseFunction {
   .parallelismHint(6);
 
 </code></pre>
+				<aside class="notes">
+					Det er her, når man skal definere topolgien,
+					man bestemmer hvor spoutene og boltene skal
+					levere meldingene sine.
+
+					I dette kodeeksempelet har vi brukt Trident.
+					Trident er et høynivå API for å definere topologier.
+					Trident sørger også for at meldinger garantert blir
+					prosessert.
+
+					Steffen: Husker du hvordan Trident garanterer dette? 
+				</aside>
 				</section>
 
 			</div>
