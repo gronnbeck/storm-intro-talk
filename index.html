@@ -146,16 +146,22 @@
 					Vasking, aggregering og minimering av data<br>
 					Apache Storm, (AKKA, Apache Spark)
 					<aside class="notes">
-						Velocity definerer raten vi mottar data på. Her er det Storm skinner. Storm kan prosessere opp til en million
-						meldinger i sekundet med lav latency. 
-						Storm løser problemer man kan løse i for eksempel AKKA, men er spesialisert innenfor kontinuering prosessering og utregning
-						på data. 
+						Velocity definerer raten vi mottar data på. I nyere tid mottar vi data fra mange uavhengige kilder, sensorer som vi ønsker å 
+						sammenligne, aggregere over, minimere, og vi krever øyeblikkelig svar.  
+						 Her er det Storm skinner. Storm kan prosessere opp til en million meldinger i sekundet med lav latency. 
 					</aside>
 				</section>
 
 				<section>
 					<h1>Bruksområder</h1>
-					<p>Event prosessering, sanntidsbilde, datainnbrudd, recommending-system, aksje-analyse, etc.</p>
+					<p>Event prosessering, sanntidsbilde, datainnbrudd, recommending-system, aksje-analyse, etc.</p><
+					<aside class="notes">
+						Kompleks event-prosessering, hvis du har behov for et sanntidsbilde over trafikkkorker på norske veier,
+						er det noen som prøver å hacke seg inn i nettverket vårt? Der kan man sende all trafikk gjennom storm for å 
+						analysere. På lik linje kan vi aggregere over alle server-loggene våre for å tidlig oppdage feil/nedetid i applikasjoner.
+						Trending topcis i twitter, aksje-analyse?
+						Nå har jeg snakket litt om hva storm er og hvordan det passer inn i landskapet, nå skal Ken vise datastrukturen og litt kode.
+					</aside>
 				</section>
 
 				<section>
@@ -358,6 +364,15 @@ public class Split extends BaseFunction {
 					Guaranteed message processing.</br>
 					Veldig lett å resonnere rundt.</br>
 					Lett å utvide</br>
+					<aside class="notes">
+						Skalere: Man kan enkelt begynne med en server med litt paralellisering, og øke etterhvert som behovet kommer.
+						Spesifisere meldings-semantikk: at least once, at most once eller exactly once.
+						I likhet med neo4j er det lett å oversette problem til implementasjon, hvor hver node i grafen er ett steg 
+						av prosesseringen. 
+						Metrics-api for overvåkning av systemet.
+						Topologier er lett å utvide - man kan legge til steg midt i en graf eller i utkanten. 
+						Man kan også definere resultatet av en topologi som en ny strøm til en annen topologi. 
+					</aside>
 				</section>
 				<section>
 					<h1>BEKK prosjekter</h1>
