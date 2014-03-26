@@ -76,12 +76,6 @@
 				</section>
 
 				<section>
-					<h2>Buzzwords</h2>
-				Distributed and fault-tolerant realtime computation: stream processing, continuous computation, distributed RPC
-				</section>
-
-
-				<section>
 					<h1>Motivasjon</h1>
 					<ul>
 						<li>Hva er storm</li>
@@ -98,7 +92,7 @@
 					<h2>History time</h2>
 					Nathan Marz - Backtype<br />
 					Kjøpt av Twitter i 2011<br />
-					Apache Storm - 2013 <br />
+					Apache Storm - 2013<br />
 
 					<aside class="notes">
 						Backtype var en social analyse-dashboard rettet mot å hjelpe brukere
@@ -114,8 +108,8 @@
 				<section>Distributed and fault-tolerant realtime computation.
 					<aside class="notes">
 						Distribuert og feil-tolerant sanntidsutregnings-system. Det er skalerbart, garanterer at meldinger blir prosessert
-						og er lett å jobbe med. 
-						Det har støtte for strømprosessering, kontinuerlige utregninger, og distribuert RPC
+						og er lett å jobbe med.
+						Det har støtte for strømprosessering, kontinuerlige utregninger, og distribuert RPC.
 					</aside>
 				</section>
 
@@ -131,12 +125,23 @@
 					<h1>Bruksområder</h1>
 					<p>Kompleks event-prosessering, kontinuerlig kalkulering og data-aggregering.</p>
 					<aside class="notes">
-						Kompleks event-prosessering, hvis du har behov for et sanntidsbilde over trafikkkorker på norske veier,
-						er det noen som prøver å hacke seg inn i nettverket vårt? Der kan man sende all trafikk gjennom storm for å
-						analysere. På lik linje kan vi aggregere over alle server-loggene våre for å tidlig oppdage feil/nedetid i applikasjoner.
-						Trending topcis i twitter, aksje-analyse?
+						Kompleks event-prosessering
+					</aside>
+				</section>
+				<section>
+					<h2>Use cases</h2>
+					<ul>
+						<li>Twitter</li>
+						<li>Loggly</li>
+						<li>Weather Channel</li>
+						<li>Flipboard</li>
+					</ul>
 
-						Nå har jeg snakket litt om hva storm er og hvordan det passer inn i landskapet, nå skal Ken vise datastrukturen og litt kode.
+					<aside class="notes">
+						<p>Twitter: Trending topics fra firehose-api'et</p>
+						<p>Loggly: Log aggregation as a service - filter, parse, analyse data.</p>
+						<p>Weather channel - vasking av data slik at det passer egent format før lagring.</p>
+						<p>Flipboard - Social magazine.  søk, real-time analytics, generering av custom-feeds on the fly. Integrert med HBase, ElasticSearch.</p>
 					</aside>
 				</section>
 
@@ -361,7 +366,7 @@ public class Split extends BaseFunction {
 <section>Enkel programmeringsmodell - lett å ressonere rundt <aside class="notes">Smertefritt å utvide eksisterende topologier - iterativ utvikling.</aside></section>
 <section>Feiltolerent<aside class="notes">Zookeeper keeps your state safe - hvis noder dør / må restartes.</aside></section>
 <section>Paralellisering på tråd, prosess og server-nivå.</section>
-<section>Valgfri meldingssemantikk<aside class="notes"> at least once, at most once eller excatly once.</aside></section>
+<section>Valgfri meldingssemantikk<aside class="notes">at least once, at most once eller excatly once.</aside></section>
 <section>Open source!<aside class="notes"> med utvikler fra Microsoft, Yahoo, Twitter ++.</section>
 
 				<section>
