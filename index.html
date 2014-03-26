@@ -106,63 +106,34 @@
 					</aside>
 				</section>
 
-				<section>
-					<h2>The three V's</h2>
-					<h3>Variety, Velocity &amp; Volume</h3>
+				<section><h2>Hva er Storm?</h2></section>
+
+				<section>Distributed and fault-tolerant realtime computation.
 					<aside class="notes">
-						For å gjøre det klarere hva Storm gjør og når man skal bruke det, skal jeg prøve å sette det i sammenheng
-						med andre noSQL og big datus rammeverk vi kjenner til.
-						Nå har jeg ikke aktivt brukt rammeverkene vi nevner, så mulig jeg trykker på noens tær, men irettsett meg etterpå.
-						Som dere kanskje har fått med dere på socialcast er det delte meninger om hva big data er. Det er to definisjoner
-						jeg foretrekker.
-						Big data kan klassifiseres ut ifra tre egenskaper.
-						Man kan ofte definere dataen som en kombinasjon av de tre, men det er gjerne en som skiller seg ut.
+						Distribuert og feil-tolerant sanntidsutregnings-system. Det er skalerbart, garanterer at meldinger blir prosessert
+						og er lett å jobbe med. 
+						Det har støtte for strømprosessering, kontinuerlige utregninger, og distribuert RPC
 					</aside>
 				</section>
 
 				<section>
-					<h2>Variety</h2>
-					Dokumentdatabaser<br>
-					Key-Value stores<br>
-					MongoDB, CouchDB, redis
+					Hadoop for data-streams. 
 					<aside class="notes">
-						Variety beskriver flyktigheten til dataen og det har vist seg at ofte er det vanskelig å denormalisere og
-						strukturere dataen til en fast form. Man har ett behov for å kunne lagre data på forskjellig måte, som har ført til
-						blant annet dokumentdatabaser og key-value stores som MongoDB, CouchDB og redis.
+						Storm blir ofte omtalt som Hadoop for data-streams. Hvor man bruker hadoop til å gjøre batch-prosessering av store datamengder bruker man Storm til å gjøre kontinuerlige utregninger på mindre data-sett, men realtime.
+						Kan brukes i samsvar med en distribuert kø for input og Cassandra som lagring. 
 					</aside>
-				</section>
-				<section>
-					<h2>Volume</h2>
-					Distribuerte databaser</br>
-					Søk på store datamengder</br>
-					Cassandra, Hadoop/Hbase, ElasticSearch, Neo4j
-					<aside class="notes">
-						Volum er en nobrainer. Oppslag, avanserte SQL-spørringer fungerer dårlig når datamengden øker. Og har ført til
-						at man har fått blant annet HBase(bigtable) og Cassandra (DynamoDB). ElasticSearch, som alle kjenner til,
-						gjør effektive søk på store data og Neo4j gir deg konstant oppslagstid på relasjoner uavhengig av datamengde.
-					</aside>
-				</section>
-				<section>
-					<h2>Velocity</h2>
-					Vasking, aggregering og minimering av data<br>
-					Apache Storm, (AKKA, Apache Spark)
-					<aside class="notes">
-						Velocity definerer raten vi mottar data på. I nyere tid mottar vi data fra mange uavhengige kilder, sensorer som vi ønsker å
-						sammenligne, aggregere over, minimere, og vi krever øyeblikkelig svar.
-						 Her er det Storm skinner. Storm kan prosessere opp til en million meldinger i sekundet med lav latency.
-					</aside>
-				</section>
+				</section>	
 
 				<section>
 					<h1>Bruksområder</h1>
-					<p>Event prosessering, sanntidsbilde, datainnbrudd, recommending-system, aksje-analyse, etc.</p><
+					<p>Kompleks event-prosessering, kontinuerlig kalkulering og data-aggregering.</p>
 					<aside class="notes">
 						Kompleks event-prosessering, hvis du har behov for et sanntidsbilde over trafikkkorker på norske veier,
 						er det noen som prøver å hacke seg inn i nettverket vårt? Der kan man sende all trafikk gjennom storm for å
 						analysere. På lik linje kan vi aggregere over alle server-loggene våre for å tidlig oppdage feil/nedetid i applikasjoner.
 						Trending topcis i twitter, aksje-analyse?
 
-						Nå har jeg snakket litt om hva storm er og hvordan det passer inn i landskapet, nå skal Ken vise datastrukturen og litt kode.s
+						Nå har jeg snakket litt om hva storm er og hvordan det passer inn i landskapet, nå skal Ken vise datastrukturen og litt kode.
 					</aside>
 				</section>
 
@@ -377,37 +348,18 @@ public class Split extends BaseFunction {
 				</aside>
 				</section>
 
-
-				<section>
-					<h2>Hvorfor skal jeg velge Storm? </h2>
-					Enkelt å skalere. </br>
-					Guaranteed message processing.</br>
-					Veldig lett å resonnere rundt.</br>
-					Lett å utvide</br>
-					<aside class="notes">
-
-						Skalere: Man kan enkelt begynne med en server med litt paralellisering, og øke etterhvert som behovet kommer.
-						Spesifisere meldings-semantikk: at least once, at most once eller exactly once.
-						I likhet med neo4j er det lett å oversette problem til implementasjon, hvor hver node i grafen er ett steg
-						av prosesseringen.
-
-						Metrics-api for overvåkning av systemet.
-
-						Topologier er lett å utvide - man kan legge til steg midt i en graf eller i utkanten.
-						Man kan også definere resultatet av en topologi som en ny strøm til en annen topologi.
-						
-					</aside>
-				</section>
-				<section>
-					<h1>BEKK prosjekter</h1>
-				</section>
-
-				<section>
-					<h3>Vegvesenet</h3>
-					<h3>Bank</h3>
-					<h3>Skatt</h3>
-				</section>
-
+<section><h2>Hvorfor Storm?</h2></section>	
+<section>						
+	Lett å skrive og skalere komplekse, sanntidsutregninger.
+ <aside class="notes">Storm er på en måte Hadoop for real-time. Abstraherer bort kompleksiteten av kø/worker systemer, og kompleksiteten rundt feilhåndtering og skalering.</aside>
+</section>
+<section>Prosessere millioner av meldinger i sekundet<aside class="notes">Storm kan prosessere flere millioner meldinger i sekundet på en liten cluster, så man slipper å bekymre seg om skalering.</aside></section>
+<section>Kan kan skrive topologier i hvilket som helst språk.</section>
+<section>Enkel programmeringsmodell - lett å ressonere rundt <aside class="notes">Smertefritt å utvide eksisterende topologier - iterativ utvikling.</aside></section>
+<section>Feiltolerent<aside class="notes">Zookeeper keeps your state safe - hvis noder dør / må restartes.</aside></section>
+<section>Paralellisering på tråd, prosess og server-nivå.</section>
+<section>Valgfri meldingssemantikk<aside class="notes"> at least once, at most once eller excatly once.</aside></section>
+<section>Open source!<aside class="notes"> med utvikler fra Microsoft, Yahoo, Twitter ++.</section>
 				<section>
 					<h1>Spm?</h1>
 				</section>
