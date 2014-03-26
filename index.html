@@ -42,33 +42,34 @@
 
 
 			<div class="slides">
-
-
-				<aside class="notes">
-					Outline:
-					Åpning: Ken
-					Motivasjon: Ken
-					Introduksjon: Steffen
-					Three V's: Steffen
-					Bruksområder: Steffen
-					Datastruktur: Ken
-					Trident: Ken
-					Hvorfor Storm: Steffen
-					Bekks prosjekter: ken
-					SPM
-				</aside>
-
 				<section>
-					<h1>Aw.. jiiiiz</h1>
-					<h3>Mother fucking breadcrumbs</h3>
+					<h1>Aw.. jeeeez</h1>
+					<h3>Microintro til Apache Storm</h3>
 					<p>
 						<small>Created by MacMan and KennyG</small>
 					</p>
+
+					<aside class="notes">
+						<script type="text/template">
+						Outline:
+						Åpning: Ken
+						Motivasjon: Ken
+						Introduksjon: Steffen
+						Three Vs: Steffen
+						Bruksområder: Steffen
+						Datastruktur: Ken
+						Trident: Ken
+						Hvorfor Storm: Steffen
+						Bekks prosjekter: ken
+						SPM
+						</script>
+					</aside>
+
 				</section>
 
 				<section>
 					<h2>Buzzwords</h2>
-					<p>Blue sky, NoData, BigSQL</p>
+					<p>NoData, BigSQL</p>
 				</section>
 
 				<section>
@@ -97,9 +98,9 @@
 					Apache Storm - 2013 <br />
 
 					<aside class="notes">
-						Backtype var en social analyse-dashboard rettet mot å hjelpe brukere 
+						Backtype var en social analyse-dashboard rettet mot å hjelpe brukere
 						forstå hvilken rekkevidde tweets og lignende har, og knytte det opp mot
-						markedsføringen sin. 
+						markedsføringen sin.
 						I 2013 ble prosjektet inkubert i Apache, og blir utviklet på av blant annet ansatte i Groupon og Microsoft.
 						Siste release er 0.9.1
 					</aside>
@@ -110,10 +111,10 @@
 					<h3>Variety, Velocity &amp; Volume</h3>
 					<aside class="notes">
 						For å gjøre det klarere hva Storm gjør og når man skal bruke det, skal jeg prøve å sette det i sammenheng
-						med andre noSQL og big datus rammeverk vi kjenner til. 
+						med andre noSQL og big datus rammeverk vi kjenner til.
 						Nå har jeg ikke aktivt brukt rammeverkene vi nevner, så mulig jeg trykker på noens tær, men irettsett meg etterpå.
-						Som dere kanskje har fått med dere på socialcast er det delte meninger om hva big data er. Det er to definisjoner 
-						jeg foretrekker. 
+						Som dere kanskje har fått med dere på socialcast er det delte meninger om hva big data er. Det er to definisjoner
+						jeg foretrekker.
 						Big data kan klassifiseres ut ifra tre egenskaper.
 						Man kan ofte definere dataen som en kombinasjon av de tre, men det er gjerne en som skiller seg ut.
 					</aside>
@@ -125,7 +126,7 @@
 					Key-Value stores<br>
 					MongoDB, CouchDB, redis
 					<aside class="notes">
-						Variety beskriver flyktigheten til dataen og det har vist seg at ofte er det vanskelig å denormalisere og 
+						Variety beskriver flyktigheten til dataen og det har vist seg at ofte er det vanskelig å denormalisere og
 						strukturere dataen til en fast form. Man har ett behov for å kunne lagre data på forskjellig måte, som har ført til
 						blant annet dokumentdatabaser og key-value stores som MongoDB, CouchDB og redis.
 					</aside>
@@ -136,9 +137,9 @@
 					Søk på store datamengder</br>
 					Cassandra, Hadoop/Hbase, ElasticSearch, Neo4j
 					<aside class="notes">
-						Volum er en nobrainer. Oppslag, avanserte SQL-spørringer fungerer dårlig når datamengden øker. Og har ført til 
-						at man har fått blant annet HBase(bigtable) og Cassandra (DynamoDB). ElasticSearch, som alle kjenner til, 
-						gjør effektive søk på store data og Neo4j gir deg konstant oppslagstid på relasjoner uavhengig av datamengde.  
+						Volum er en nobrainer. Oppslag, avanserte SQL-spørringer fungerer dårlig når datamengden øker. Og har ført til
+						at man har fått blant annet HBase(bigtable) og Cassandra (DynamoDB). ElasticSearch, som alle kjenner til,
+						gjør effektive søk på store data og Neo4j gir deg konstant oppslagstid på relasjoner uavhengig av datamengde.
 					</aside>
 				</section>
 				<section>
@@ -146,9 +147,9 @@
 					Vasking, aggregering og minimering av data<br>
 					Apache Storm, (AKKA, Apache Spark)
 					<aside class="notes">
-						Velocity definerer raten vi mottar data på. I nyere tid mottar vi data fra mange uavhengige kilder, sensorer som vi ønsker å 
-						sammenligne, aggregere over, minimere, og vi krever øyeblikkelig svar.  
-						 Her er det Storm skinner. Storm kan prosessere opp til en million meldinger i sekundet med lav latency. 
+						Velocity definerer raten vi mottar data på. I nyere tid mottar vi data fra mange uavhengige kilder, sensorer som vi ønsker å
+						sammenligne, aggregere over, minimere, og vi krever øyeblikkelig svar.
+						 Her er det Storm skinner. Storm kan prosessere opp til en million meldinger i sekundet med lav latency.
 					</aside>
 				</section>
 
@@ -157,10 +158,11 @@
 					<p>Event prosessering, sanntidsbilde, datainnbrudd, recommending-system, aksje-analyse, etc.</p><
 					<aside class="notes">
 						Kompleks event-prosessering, hvis du har behov for et sanntidsbilde over trafikkkorker på norske veier,
-						er det noen som prøver å hacke seg inn i nettverket vårt? Der kan man sende all trafikk gjennom storm for å 
+						er det noen som prøver å hacke seg inn i nettverket vårt? Der kan man sende all trafikk gjennom storm for å
 						analysere. På lik linje kan vi aggregere over alle server-loggene våre for å tidlig oppdage feil/nedetid i applikasjoner.
 						Trending topcis i twitter, aksje-analyse?
-						Nå har jeg snakket litt om hva storm er og hvordan det passer inn i landskapet, nå skal Ken vise datastrukturen og litt kode.
+
+						Nå har jeg snakket litt om hva storm er og hvordan det passer inn i landskapet, nå skal Ken vise datastrukturen og litt kode.s
 					</aside>
 				</section>
 
@@ -173,8 +175,12 @@
 					<h2>Topologi</h2>
 					<img src="resources/topology.png">
 					<aside class="notes">
-						* t is the topological[3] structure of a network,
-						and may be depicted physically or logically.
+						<ul>
+							<li>En graph</li>
+							<li>Eksempel har 6 noder</li>
+							<li>Hver node har sin egen jobb</li>
+							<li>Ikke delt state -> enkelt å distribuere og skalere</li>
+						</ul>
 					</aside>
 				</section>
 
@@ -183,24 +189,26 @@
 					<img src="resources/spout.jpg">
 
 					<aside class="notes">
-						I Storm kan "sourcene" for eventene sees på
+						<p>I Storm kan "sourcene" for eventene sees på
 						som en kran. Og de har dermed fått navnet "Spout"
 						som rett og slett betyr kran. Og som dere ser her
 						har jeg lagt ved et elegant bilde av en kran.
-
+						</p>
 						Spoutene er utvikles av utviklerne, og Storm gir
 						oss kun et enkelt interface som må implementeres.
-
+						<p>
 						Spouts, kan og vil ofte, fungere som koblingen
 						mellom "den ekte verden" og "storm sin verden".
 						Der den siste nevnte har en flukserende og ikke
 						nødvendigvis en fullstendig state. Og derfor kan
 						utnytte dette til å gjøre ting raskt.
-
+					</p><p>
 						Eksempler på hva man kan bruke en Spout til:
-							- Hente og videresende data fra en kø
-							- Produsere randomsert data. F.eks. til
-							generering av RSA-nøkler
+						<ul>
+							<li>Hente og videresende data fra en kø</li>
+							<li>Produsere randomsert data. F.eks. til</li>
+						</ul>
+						generering av RSA-nøkler</p>
 					</aside>
 				</section>
 
@@ -209,31 +217,35 @@
 					<img src="resources/bolt1.jpg">
 
 					<aside class="notes">
-						Bolts. Usain Bolt. Disse kompoenentene har fått
+
+						<p>Bolts. Usain Bolt. Disse kompoenentene har fått
 						navnet sitt fordi de skal være uavhengige og raske,
-						som et lyn.
+						som et lyn.</p>
 
-						Derfor følte jeg at det passet med et bilde av
+						<p>Derfor følte jeg at det passet med et bilde av
 						Usain. Jeg vet ikke hvor uavhengig han er, men jeg
-						vet at han er jærlig rask.
+						vet at han er jærlig rask.</p>
 
-						Nok om det Usain. Det er i boltene Storm vil at
+						<p>Nok om det Usain. Det er i boltene Storm vil at
 						vi skal implementere logikk og potensielt state.
 						Ved å implentere bolter slik at de er uavhengig av
 						hverandre, tidligere meldinger (til den graden det
 						er mulig) og feil tolerante. Kan man få et event
-						strøm prosesseringsmiljø som kan skaleres veldig bra.
+						strøm prosesseringsmiljø som kan skaleres veldig bra.</p>
 
-						Hvor mye det vil skalere er basert på hvor godt
+						<p>Hvor mye det vil skalere er basert på hvor godt
 						boltene er programmert. Men Storm tvinger utviklere til
 						å tenke funksjonelt og stateless. Slik at man faktisk
-						vil klare å utvikle en skalerbar Storm topologi.
+						vil klare å utvikle en skalerbar Storm topologi.</p>
 
-						Eksempler på hva man kan bruke en Bolt til er å:
-							- Gjøre enkel logikk som filtrering
-							- Manipulere data
-							- Gjøre persistering
-							- etc
+						<p>Eksempler på hva man kan bruke en Bolt til er å:</p>
+						<ul>
+							<li>Gjøre enkel logikk som filtrering</li>
+							<li>Manipulere data</li>
+							<li>Gjøre persistering</li>
+							<li>etc</li>
+						</ul>
+						</script>
 					</aside>
 
 				</section>
@@ -263,21 +275,23 @@
 				<section>
 					<h1>Eksempler med Trident</h1>
 					<aside class="notes">
-						Nå tenkte jeg at vi skulle gå igjennom et eksempel
+
+						<p>Nå tenkte jeg at vi skulle gå igjennom et eksempel
 						på hvordan man kan bruke Storm. Jeg har elegant
 						sakset koden fra Nathan Marz sin introduksjon
-						til Storm.
+						til Storm.</p>
 
-						Så eksempelet er gankse triviellt, men tar oss
+						<p>Så eksempelet er gankse triviellt, men tar oss
 						igjennom de viktigste konseptene for å komme i gang
 						med Storm. Bare husk at det vi presenterer her
 						er kun overflaten av hva man kan få til i
-						rammeverket / platformen.
+						rammeverket / platformen.</p>
 
-						Tilbake til eksempelet. Helt konkret skal vi lage
+						<p>Tilbake til eksempelet. Helt konkret skal vi lage
 						en topologi som tar inn en menge med setninger,
 						og teller "word-occurance" for alle inkommende
-						setninger.
+						setninger.</p>
+
 					</aside>
 				</section>
 
@@ -297,13 +311,15 @@
 </code></pre>
 
 				<aside class="notes">
-					Denne Spouten er ganske triviell og lite brukelig
-					til noe annet enn eksempel kode.
 
-					Kort fortalt tar denne disse fire sentingene om kuer
-					epler og godterier og sender dem til topologien.
+					<p>Denne Spouten er ganske triviell og lite brukelig
+					til noe annet enn eksempel kode.</p>
 
-					Hvor de blir sendt kommer vi tilbake til senere
+					<p>Kort fortalt tar denne disse fire sentingene om kuer
+					epler og godterier og sender dem til topologien.</p>
+
+					<p>Hvor de blir sendt kommer vi tilbake til senere</p>
+					</script>
 				</aside>
 				</section>
 
@@ -322,12 +338,14 @@ public class Split extends BaseFunction {
 </code></pre>
 				</section>
 				<aside class="notes">
-					Her kommer et eksempel på en bolt.
-					Dette er en helt enkel Java-snippet.
 
-					Og som dere ser tar denne inn en setning,
+					<p>Her kommer et eksempel på en bolt.
+					Dette er en helt enkel Java-snippet.</p>
+
+					<p>Og som dere ser tar denne inn en setning,
 					splitter opp setningen til ord og sender
-					dem videre ut til den store verdenen.
+					dem videre ut til den store verdenen.</p>
+
 				</aside>
 				<section>
 					<h3> En topologi </h3>
@@ -344,16 +362,18 @@ public class Split extends BaseFunction {
 
 </code></pre>
 				<aside class="notes">
-					Det er her, når man skal definere topolgien,
-					man bestemmer hvor spoutene og boltene skal
-					levere meldingene sine.
 
-					I dette kodeeksempelet har vi brukt Trident.
+					<p>Det er her, når man skal definere topolgien,
+					man bestemmer hvor spoutene og boltene skal
+					levere meldingene sine.</p>
+
+					<p>I dette kodeeksempelet har vi brukt Trident.
 					Trident er et høynivå API for å definere topologier.
 					Trident sørger også for at meldinger garantert blir
-					prosessert.
+					prosessert.</p>
 
-					Steffen: Husker du hvordan  garanterer dette?
+					<p>Steffen: Husker du hvordan  garanterer dette?</p>
+
 				</aside>
 				</section>
 
@@ -365,13 +385,17 @@ public class Split extends BaseFunction {
 					Veldig lett å resonnere rundt.</br>
 					Lett å utvide</br>
 					<aside class="notes">
+
 						Skalere: Man kan enkelt begynne med en server med litt paralellisering, og øke etterhvert som behovet kommer.
 						Spesifisere meldings-semantikk: at least once, at most once eller exactly once.
-						I likhet med neo4j er det lett å oversette problem til implementasjon, hvor hver node i grafen er ett steg 
-						av prosesseringen. 
+						I likhet med neo4j er det lett å oversette problem til implementasjon, hvor hver node i grafen er ett steg
+						av prosesseringen.
+
 						Metrics-api for overvåkning av systemet.
-						Topologier er lett å utvide - man kan legge til steg midt i en graf eller i utkanten. 
-						Man kan også definere resultatet av en topologi som en ny strøm til en annen topologi. 
+
+						Topologier er lett å utvide - man kan legge til steg midt i en graf eller i utkanten.
+						Man kan også definere resultatet av en topologi som en ny strøm til en annen topologi.
+						
 					</aside>
 				</section>
 				<section>
